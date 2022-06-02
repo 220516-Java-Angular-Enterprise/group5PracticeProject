@@ -92,7 +92,6 @@ public class StartMenu extends IMenu{
 
             try {
                 user = userService.login(username, password);
-
                 new MainMenu(user, new UserService(new UserDAO())).start();
                 break;
             } catch (InvalidUserException e) {
