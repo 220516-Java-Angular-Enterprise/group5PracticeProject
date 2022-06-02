@@ -38,6 +38,7 @@ CREATE TABLE comments (
 id varchar not null,
 thread_id varchar not null,
 user_id varchar not null,
+message varchar not null,
 
 -- constraint requires that the primary key be the 'id' column
 constraint pk_comments_id
