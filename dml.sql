@@ -1,4 +1,4 @@
---DML script to create test data
+--DML scripts
 
 INSERT INTO users values
 ('testuserid1', 'testusername1', 'testuserpw1'),
@@ -15,11 +15,11 @@ insert into threads values
 --test data: user 1 has 1 comment.  user 2 has 2 comments.  user 3 has 3 comments
 --thread 1 has no comments, thread 2 has 1 comment. thread 3 has 2 comments, thread 4 has 3 comments
 insert into comments values
-('testcommentid1', 'testthreadid2', 'testuserid1'),
-('testcommentid2', 'testthreadid3', 'testuserid2'),
-('testcommentid3', 'testthreadid3', 'testuserid3'),
-('testcommentid4', 'testthreadid4', 'testuserid3'),
-('testcommentid5', 'testthreadid4', 'testuserid2'),
-('testcommentid6', 'testthreadid4', 'testuserid3');
+('testcommentid1', 'testthreadid2', 'testuserid1', 'Nice.'),
+('testcommentid2', 'testthreadid3', 'testuserid2', 'lolwut'),
+('testcommentid3', 'testthreadid3', 'testuserid3', 'test'),
+('testcommentid4', 'testthreadid4', 'testuserid3', 'lmao'),
+('testcommentid5', 'testthreadid4', 'testuserid2', 'idfk'),
+('testcommentid6', 'testthreadid4', 'testuserid3', 'orly?');
 
 
