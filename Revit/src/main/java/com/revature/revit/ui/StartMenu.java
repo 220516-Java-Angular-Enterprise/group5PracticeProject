@@ -92,7 +92,7 @@ public class StartMenu extends IMenu{
 
             try {
                 user = userService.login(username, password);
-                new MainMenu(user, new UserService(new UserDAO())).start();
+                new ThreadUI(user, new UserService(new UserDAO())).main();
                 break;
             } catch (InvalidUserException e) {
                 System.out.println(e.getMessage());
@@ -121,7 +121,7 @@ public class StartMenu extends IMenu{
             while (true) {
 
                 //Ask the user to create an Adventurer Name
-                System.out.print("\nAdventurer Name: ");
+                System.out.print("\nUser Name: ");
                 username = scan.nextLine();
 
                 //Checks validity of the AdvName and makes sure it isn't already taken
@@ -176,7 +176,8 @@ public class StartMenu extends IMenu{
 
                             /* Calling the anonymous class MainMenu.start() to navigate to the main menu screen. */
                             /* We are also passing in a user object, so we know who is logged in. */
-                            new MainMenu(user, new UserService(new UserDAO())).start();;
+                            //new MainMenu(user, new UserService(new UserDAO())).start();;
+                            new ThreadUI(user, new UserService(new UserDAO())).main();
 
                             /* Break out of the entire loop. */
                             break completeSignup;
@@ -193,14 +194,12 @@ public class StartMenu extends IMenu{
         }
     }
     private void displayStartMessage() {
-        System.out.println("Welcome to the best Fantasy Adventure store in all the realms!");
-        System.out.println("Here you can find anything you may need on your adventures; whether that be");
-        System.out.println("weapons, armour, traps, potions, food, or magical books and scrolls.");
-        System.out.println("We have all that and more and you won't find a better deal on your adventuring gear than here!");
+        System.out.println("Welcome to Revit!!!");
     }
 
     private void displayLoginMessage() {
         System.out.println("[1] Login");
         System.out.println("[2] Signup");
         System.out.println("[x] Exit");
+    }
 }

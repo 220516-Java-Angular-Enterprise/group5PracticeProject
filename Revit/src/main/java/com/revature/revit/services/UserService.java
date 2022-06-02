@@ -5,6 +5,7 @@ import com.revature.revit.models.Users;
 import com.revature.revit.util.annotations.Inject;
 import com.revature.revit.util.customExceptions.InvalidUserException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
@@ -22,7 +23,7 @@ public class UserService {
         /* users = userDAO.getAll() */
 
         Users user = new Users();
-        List<Users> users = UserDAO.getAll();
+        List<Users> users = userDAO.getAll();
 
         for (Users u : users) {
             if (u.getUsername().equals(username)) {
@@ -45,6 +46,11 @@ public class UserService {
         userDAO.save(user);
     }
 
+    public Users getUserByID(String id){
+        return userDAO.getById(id);
+    }
+
+
     // Runs the AdvName through a Regex to check its complexity
     public boolean isValidUserName(String username) {
         if (username.matches("^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$")) return true;
@@ -53,9 +59,9 @@ public class UserService {
 
 
     // Checks through our database to see if the advName has already been taken by another Adventurer
-    public boolean isNotDuplicateUsername(String advName) {
-        List<String> UserNames = UserDAO.getAllUserNames();
-        if (UserNames.contains(advName)) throw new InvalidUserException("Username is already taken :(");
+    public boolean isNotDuplicateUsername(String username) {
+        List<String> UserNames = userDAO.getAllUsernames();
+        if (UserNames.contains(username)) throw new InvalidUserException("Username is already taken :(");
         return true;
     }
 

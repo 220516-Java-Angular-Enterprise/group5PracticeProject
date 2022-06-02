@@ -17,7 +17,7 @@ public class UserDAO implements CrudDAO<Users> {
     @Override
     public void save(Users obj) {
         try {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO users (id, username, password VALUES (?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO users (id, name, password) VALUES (?,?,?)");
             ps.setString(1, obj.getId());
             ps.setString(2, obj.getUsername());
             ps.setString(3, obj.getPassword());
@@ -41,26 +41,40 @@ public class UserDAO implements CrudDAO<Users> {
 
     @Override
     public Users getById(String id) {
+
+       //Users users = new ArrayList<Users>();
+
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM users WHERE id = '" + id + "'");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Users user = new Users();
+                user.setId(rs.getString("id"));
+                user.setUsername(rs.getString("name"));
+                user.setPassword(rs.getString("password"));
+                return user;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("An error occurred when trying to get data from the database.");
+        }
         return null;
+
     }
 
     @Override
     public List<Users> getAll() {
-        List<User> users = new ArrayList<>();
+        List<Users> users = new ArrayList<>();
 
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM users");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                User user = new User();
+                Users user = new Users();
                 user.setId(rs.getString("id"));
-                user.setUsername(rs.getString("username"));
+                user.setUsername(rs.getString("name"));
                 user.setPassword(rs.getString("password"));
-                user.setRole(rs.getString("role"));
-                user.setAddress(rs.getString("address"));
-                user.setCity(rs.getString("city"));
-                user.setState(rs.getString("state"));
 
                 users.add(user);
 
@@ -72,15 +86,15 @@ public class UserDAO implements CrudDAO<Users> {
 
 
     }
-    public List<String> getAllUsernames() throws IOException {
+    public List<String> getAllUsernames(){
         List<String> usernames = new ArrayList<>();
 
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT username FROM users");
+            PreparedStatement ps = con.prepareStatement("SELECT name FROM users");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                usernames.add(rs.getString("username").toLowerCase());
+                usernames.add(rs.getString("name").toLowerCase());
             }
         } catch (SQLException e) {
             throw new RuntimeException("An error occurred when trying to get data from the database.");

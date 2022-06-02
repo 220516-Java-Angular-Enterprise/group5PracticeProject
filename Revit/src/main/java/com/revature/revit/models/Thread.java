@@ -6,7 +6,15 @@ public class Thread {
     private String title;
     private String user_id;
 
+//<editor-fold desc="constructors">
+    public Thread (String id, String title, String user_id){
+        this.id=id;
+        this.title=title;
+        this.user_id=user_id;
+    }
+    public Thread (){ super();}
 
+// <editor-fold desc="constructors">
 
     //<editor-fold desc="Get/Set">
 
