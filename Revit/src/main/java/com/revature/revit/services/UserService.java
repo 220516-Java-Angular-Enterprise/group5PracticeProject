@@ -2,10 +2,20 @@ package com.revature.revit.services;
 
 import com.revature.revit.daos.UserDAO;
 import com.revature.revit.models.Users;
+import com.revature.revit.util.annotations.Inject;
+import com.revature.revit.util.customExceptions.InvalidUserException;
 
 import java.util.List;
 
 public class UserService {
+
+    @Inject
+    private final UserDAO userDAO;
+
+    @Inject
+    public UserService(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
     public Users login(String username, String password) {
         /* List<User> users = new ArrayList<>() */
@@ -31,17 +41,21 @@ public class UserService {
         return isValidCredentials(user);
     }
 
+    public void register(Users user) {
+        userDAO.save(user);
+    }
+
     // Runs the AdvName through a Regex to check its complexity
-    public boolean isValidAdvName(String advName) {
-        if (advName.matches("^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$")) return true;
+    public boolean isValidUserName(String username) {
+        if (username.matches("^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$")) return true;
         throw new InvalidUserException("Invalid username. Username needs to be 8-20 characters long.");
     }
 
 
     // Checks through our database to see if the advName has already been taken by another Adventurer
     public boolean isNotDuplicateUsername(String advName) {
-        List<String> advNames = AdvDAO.getAllAdvNames();
-        if (advNames.contains(advName)) throw new InvalidUserException("Username is already taken :(");
+        List<String> UserNames = UserDAO.getAllUserNames();
+        if (UserNames.contains(advName)) throw new InvalidUserException("Username is already taken :(");
         return true;
     }
 
@@ -56,11 +70,11 @@ public class UserService {
 
     // Checks the Adventurer Object to see if both the AdvName and the Password are both valid.
     public Users isValidCredentials(Users user) {
-        if (adv.getAdvName() == null && adv.getPassword() == null)
+        if (user.getUsername() == null && user.getPassword() == null)
             throw new InvalidUserException("Incorrect username and password.");
-        else if (adv.getAdvName() == null) throw new InvalidUserException("Incorrect username.");
-        else if (adv.getPassword() == null) throw new InvalidUserException("Incorrect password.");
+        else if (user.getUsername() == null) throw new InvalidUserException("Incorrect username.");
+        else if (user.getPassword() == null) throw new InvalidUserException("Incorrect password.");
 
-        return adv;
+        return user;
     }
 }
