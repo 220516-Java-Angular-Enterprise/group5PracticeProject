@@ -1,11 +1,13 @@
 package com.revature.revit.ui;
 
+import com.revature.revit.daos.UserDAO;
 import com.revature.revit.models.Users;
 import com.revature.revit.services.UserService;
 
 import java.util.Scanner;
 import java.util.UUID;
 import com.revature.revit.util.annotations.Inject;
+import com.revature.revit.util.customExceptions.InvalidUserException;
 
 
 public class StartMenu extends IMenu{
@@ -82,7 +84,7 @@ public class StartMenu extends IMenu{
 
             //Ask the input an Adventurer Name and password
             System.out.println("\nLogging in...");
-            System.out.print("\nAdventurer Name: ");
+            System.out.print("\nUser Name: ");
             username = scan.nextLine();
             System.out.print("\nPassword: ");
             password = scan.nextLine();
@@ -91,8 +93,7 @@ public class StartMenu extends IMenu{
             try {
                 user = userService.login(username, password);
 
-                if (adv.getUsrRole().equals("ADMIN")) new AdminMenu(adv, new UserService(new AdvDAO()), new ItemService(new ItemDAO()), new StoreService(new StoreDAO()), new OrderService(new OrderDAO()), new OrderHistoryService(new OrderHistoryDAO())).start();
-                else new MainMenu(adv, new UserService(new AdvDAO()), new ItemService(new ItemDAO()), new StoreService(new StoreDAO()), new OrderService(new OrderDAO()), new OrderHistoryService(new OrderHistoryDAO())).start();
+                new MainMenu(user, new UserService(new UserDAO())).start();
                 break;
             } catch (InvalidUserException e) {
                 System.out.println(e.getMessage());
@@ -107,9 +108,7 @@ public class StartMenu extends IMenu{
             Enter a advName and a password. Make sure they are not already taken and
             make sure they meet the requirements for the advName and password.
         */
-        String advName, password;
-        String advClass = "";
-        String store_id = "";
+        String username, password;
         Scanner scan = new Scanner(System.in);
 
         /*
@@ -124,12 +123,12 @@ public class StartMenu extends IMenu{
 
                 //Ask the user to create an Adventurer Name
                 System.out.print("\nAdventurer Name: ");
-                advName = scan.nextLine();
+                username = scan.nextLine();
 
                 //Checks validity of the AdvName and makes sure it isn't already taken
                 try {
-                    if (userService.isValidAdvName(advName)) {
-                        if (userService.isNotDuplicateUsername(advName)) break;
+                    if (userService.isValidUserName(username)) {
+                        if (userService.isNotDuplicateUsername(username)) break;
                     }
                 } catch (InvalidUserException e) {
                     System.out.println(e.getMessage());
@@ -139,7 +138,6 @@ public class StartMenu extends IMenu{
 
             //Asking and Checking the Password
             while (true) {
-                store_id = userService.getStoreIdFromAdvRole(advClass);
                 System.out.print("\nPassword: ");
                 password = scan.nextLine();
 
@@ -163,7 +161,7 @@ public class StartMenu extends IMenu{
                 while (true) {
                     /* Asking user to confirm username and password. */
                     System.out.println("\nPlease confirm your credentials (y/n)");
-                    System.out.println("\nUsername: " + advName);
+                    System.out.println("\nUsername: " + username);
                     System.out.println("Password: " + password);
 
                     System.out.print("\nEnter: ");
@@ -174,8 +172,8 @@ public class StartMenu extends IMenu{
                     switch (input) {
                         case "y":
                             /* If yes, we instantiate a User object to store all the information into it. */
-                            Adventurer adv = new Adventurer(UUID.randomUUID().toString(), advName, password, advClass,"DEFAULT", store_id);
-                            userService.register(adv);
+                            Users user = new Users(UUID.randomUUID().toString(), username, password);
+                            userService.register(user);
 
                             /* Calling the anonymous class MainMenu.start() to navigate to the main menu screen. */
                             /* We are also passing in a user object, so we know who is logged in. */
