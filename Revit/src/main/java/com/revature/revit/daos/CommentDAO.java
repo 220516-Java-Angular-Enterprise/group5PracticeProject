@@ -4,7 +4,7 @@ import com.revature.revit.models.Users;
 
 import java.util.List;
 
-public class UserDAO implements CrudDAO<Users> {
+public class CommentDAO implements CrudDAO<Users>{
     @Override
     public void save(Users obj) {
 
