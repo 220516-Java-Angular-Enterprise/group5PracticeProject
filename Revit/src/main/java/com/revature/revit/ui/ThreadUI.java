@@ -13,7 +13,7 @@ public class ThreadUI {
         String nameOfThread;
         int choice; // index of thread.
 
-        System.out.println("Threads: Select by number. [x] to exit.");
+        System.out.println("Threads: Select by number. [x] to exit. [c] to create thread:\n");
         while (gettingCurrentField) {
             ArrayList<Thread> threads; //GET THREADS FROM THREAD SERVICE!
             for (int i = 0; i < threads.size(); i++) {
@@ -25,6 +25,10 @@ public class ThreadUI {
 
             if (input.equals("x")){
                 return;
+            }
+            if (input.equals("c")){
+                createNewThread();
+                gettingCurrentField = false;
             }
             else if (input.matches(numberRegex)){
                 choice = Integer.parseInt(input);
