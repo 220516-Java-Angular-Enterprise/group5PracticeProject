@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class ThreadUI {
 
 
+
     public void main(){
         Scanner mainScanner = new Scanner(System.in);
         boolean gettingCurrentField = true;
@@ -64,6 +65,8 @@ public class ThreadUI {
                 nameOfThread = input;
             }
         }
+
+        //Start comment with thread.
 
     }
 

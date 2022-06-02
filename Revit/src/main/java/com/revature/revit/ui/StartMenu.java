@@ -176,7 +176,7 @@ public class StartMenu extends IMenu{
 
                             /* Calling the anonymous class MainMenu.start() to navigate to the main menu screen. */
                             /* We are also passing in a user object, so we know who is logged in. */
-                            new MainMenu(adv, new UserService(new AdvDAO()), new ItemService(new ItemDAO()), new StoreService(new StoreDAO()), new OrderService(new OrderDAO()), new OrderHistoryService(new OrderHistoryDAO())).start();;
+                            new MainMenu(user, new UserService(new UserDAO())).start();;
 
                             /* Break out of the entire loop. */
                             break completeSignup;

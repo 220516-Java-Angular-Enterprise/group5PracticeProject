@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4eb63970-195e-4eea-a65b-cd43c915a600" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/revit/util/customExceptions/InvalidUserException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revit/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revit/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revit/MainDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revit/MainDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revit/models/Threads.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revit/ui/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revit/ui/StartMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revit/ui/ThreadUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revit/ui/ThreadUI.java" afterDir="false" />
+    </list>
+    <list id="50ed87dc-eb40-4589-91a0-6bc61074e7c3" name="Changes by hislittlecuzin" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/revit/ui/ThreadUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/revit/ui/ThreadUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +29,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/revature/revit/ui/ThreadUI.java">
+      <ranges>
+        <range start1="8" end1="8" start2="8" end2="9" changelist="4eb63970-195e-4eea-a65b-cd43c915a600" />
+        <range start1="66" end1="66" start2="67" end2="69" changelist="50ed87dc-eb40-4589-91a0-6bc61074e7c3" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -39,7 +51,8 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false"
   }
 }]]></component>
   <component name="RecentsManager">
