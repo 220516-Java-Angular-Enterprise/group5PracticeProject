@@ -4,6 +4,7 @@
 
 TL;DR
 This is a basic forum similar to Reddit. 
+This entire project was created from start to finish in about 3 hours for a friendly competition "Hackathon."
 
 
 Features:
